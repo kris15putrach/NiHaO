@@ -1,10 +1,14 @@
 <?php
 
 
+
 namespace App\Http\Controllers;
+
 
 use Illuminate\Http\Request;
 use App\Models\Unggah;
+use App\Models\Comment;
+
 
 class UnggahController extends Controller
 {
@@ -25,6 +29,19 @@ class UnggahController extends Controller
         ]);
 
         return redirect('/komu')->with('success', 'Data berhasil diunggah.');
+    }
+
+    public function index()
+    {
+        $unggah = Unggah::all();
+        $comments = Comment::all();
+        return view('kelolakomunitas', compact('unggah', 'comments'));
+    }
+
+    public function destroy($id)
+    {
+        Unggah::destroy($id);
+        return redirect('/kelolakomu')->with('success', 'Post deleted successfully.');
     }
 }
 

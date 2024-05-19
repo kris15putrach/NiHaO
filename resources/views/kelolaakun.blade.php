@@ -52,7 +52,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-xs-5">
-                            <h2>Pengguna <b>NiHaO!</b></h2>
+                            <h2>Akun Pengguna <b>NiHaO!</b></h2>
                         </div>
                     </div>
                 </div>

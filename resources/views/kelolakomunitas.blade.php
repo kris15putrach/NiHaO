@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nihao! Scan Ikan Nilamu!</title>
-    <link href="\komunitas\komunitas.css" rel="stylesheet">
+    <title>Nihao! Selamat Datang</title>
+    <link href="\kelolaakun\kelolaakun.css" rel="stylesheet">
     <link href="/bootstrap-5.3.3-dist/css/bootstrap.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46Z
-    <script src="\komunitas\komunitas.js"></script>
     <script src="/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
-    <style>
-
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-
 <body>
-
     <header>
         <div class="logo">
-            <img src="/tampilanutama/headercamera.png" alt="NIHAO Logo">
+            <img src="tampilanutama/headercamera.png" alt="NIHAO Logo">
             <h1>NiHaO</h1>
         </div>
         <nav>
@@ -31,56 +24,112 @@
                 <li><a href="#about">About</a></li>
             </ul>
         </nav>
-
         <div id="mySidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#"><b><u>Profil</u></b></a>
-            <a href="#"><b><u>Ganti Password</u></b></a>
-            <a href="#"><b><u>Kententuan Layanan</u></b></a>
-            <a href="#"><b><u>Kebijakan Privasi</u></b></a>
-
+            <a href="#"><u>Profil</u></a>
+            <a href="#"><u>Ganti Password</u></a>
+            <a href="#"><u>Kententuan Layanan</u></a>
+            <a href="#"><u>Kebijakan Privasi</u></a>
             <div class="logoutbtn">
-            <a href="/login"><b><u>Log Out</u></b></a>
+                <a href="/login"><b><u>Log Out</u></b></a>
             </div>
-
         </div>
-
         <div id="main">
             <button class="openbtn" onclick="openNav()">&#9776;</button>
-
         </div>
     </header>
 
-
-<div class="pertama">
-
-    <div class="welcom">
-                <div class="welcome"><B>Fitur Kelola Komunitas</B></div>
-                <div class="subtext"><b>Nihao! Admin, Silahkan kelola Komunitas Pengguna NiHaO disini</b>            
+    <div class="sambutan">
+        <div class="welcome"><b>Fitur Kelola Komunitas</b></div>
+        <div class="subtext"><b>NiHaO Admin! Silahkan Kelola Komunitas Pengguna NiHaO disini</b></div>
     </div>
 
-</div> 
+    <div class="container">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <h2>Postingan <b>NiHaO!</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Post_Id</th>
+                            <th>Nama</th>
+                            <th>Pesan</th>
+                            <th>Gambar</th>
+                            <th>Waktu Post</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($unggah as $post)
+                            <tr>
+                                <td>{{ $post->id }}</td>
+                                <td>{{ $post->nama }}</td>
+                                <td>{{ $post->pesan }}</td>
+                                <td><img src="data:image/jpeg;base64,{{ base64_encode($post->gambar) }}" alt="Gambar" width="100"/></td>
+                                <td>{{ $post->created_at }}</td>
+                                <td>
+                                    <form action="/unggah/{{ $post->id }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-
-    <script>
-    
-    function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
-
-/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
-}
-
-       
-
-    </script>
-
-    
-
+    <div class="container">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <h2>Komentar Postingan <b>NiHaO!</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Comment_Id</th>
+                            <th>Post_Id</th>
+                            <th>Username</th>
+                            <th>Komentar</th>
+                            <th>Waktu Post</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($comments as $comment)
+                            <tr>
+                                <td>{{ $comment->id }}</td>
+                                <td>{{ $comment->post_id }}</td>
+                                <td>{{ $comment->username }}</td>
+                                <td>{{ $comment->comment }}</td>
+                                <td>{{ $comment->created_at }}</td>
+                                <td>
+                                    <form action="/comments/{{ $comment->id }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
-
 </html>

@@ -95,7 +95,7 @@
                             <div class="row text-center fw-bold">
                                 <div class="col">
                                     <a href="#" class="text-body text-opacity-50 text-decoration-none d-block p-2">
-                                        <i class="far fa-comment me-1 d-block d-sm-inline"></i> Comment
+                                        <i class="far fa-comment me-1 d-block d-sm-inline"></i> Komentar
                                     </a>
                                 </div>
                             </div>
@@ -107,10 +107,12 @@
                                 <form method="POST" action="{{ route('comments.store') }}">
                                     @csrf
                                         <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                        <input type="text" name="comment" class="form-control rounded-pill bg-white bg-opacity-15" style="padding-right: 120px;" placeholder="Tulis Komentar..." />
-                                        <button type="submit"   >
-                                            <img src="/komunitas/send.png" alt="Submit" style="width: 30px; height: auto;">
-                                        </button>
+                                        
+                                            <input type="text" name="comment" class="form-control rounded-pill bg-white bg-opacity-15 komentar-input" placeholder="Tulis Komentar..." />
+                                            <button type="submit" class="submit-komentar">
+                                                <img src="/komunitas/send.png" alt="Submit" class="submit-img">
+                                            </button>
+                                      
                                 </form>
                                     </div>  
                                 </div>
