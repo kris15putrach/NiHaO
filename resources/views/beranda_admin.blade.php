@@ -19,7 +19,7 @@
 
             <header>
                 <div class="logo">
-                    <img src="tampilanutama/headercamera.png" alt="NIHAO Logo">
+                    <img src="\tampilanutama\headercamera.png" alt="NIHAO Logo">
                     <h1>NiHaO</h1>
                 </div>
                 <nav>
@@ -54,15 +54,15 @@
 
             <div class="container">
                 <div class="welcome"><B>WELCOME TO NiHaO!!!</B></div>
-                <div class="subtext"><b>selamat menikmati berbagai macam fitur yang berguna untuk anda semuanya</b> 
+                <div class="subtext"><b>Selamat Beroperasi di NiHaO Admin!</b> 
             
             </div>
             
             <div class="buttonpack">
-                <button class="button">
+            <button class="button" onclick="window.location.href='adminakun'">
             <img id="uploaded-image" src="\berandaadmin\Group 4.png" alt="Folder Icon" width="400" height="auto" />
                 </button>
-                <button class="button">
+                <button class="button" onclick="window.location.href='kelolakomu'">
                 <img id="uploaded-image" src="\berandaadmin\Group 5.png" alt="Folder Icon" width="400" height="auto" />
                 </button>
         

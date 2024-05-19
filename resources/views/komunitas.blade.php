@@ -69,150 +69,75 @@
 </div> 
 
 <div class="komusi">
-    <div class="container profile">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="d-flex align-items-center mb-3">
-                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" width="50" class="rounded-circle" /></a>
-                        <div class="flex-fill ps-2">
-                            <div class="fw-bold"><a href="#" class="text-decoration-none">Asep Bensin</a> at <a href="#" class="text-decoration-none">Depok</a></div>
-                            <div class="small text-body text-opacity-50">March 16</div>
-                        </div>
-                    </div>
-
-                    <p>ikanku ikan jadi-jadian</p>
-                    <div class="profile-img-list">
-                        <div class="profile-img-list-item main">
-                            <a href="#" data-lity="" class="profile-img-list-link">
-                                <span class="profile-img-content" style="background-image: url(https://bootdey.com/img/Content/avatar/avatar1.png);"></span>
-                            </a>
-                        </div>
-                        <div class="profile-img-list-item">
-                            <a href="#" data-lity="" class="profile-img-list-link">
-                                <span class="profile-img-content" style="background-image: url(https://bootdey.com/img/Content/avatar/avatar2.png);"></span>
-                            </a>
-                        </div>
-                        <div class="profile-img-list-item">
-                            <a href="#" data-lity="" class="profile-img-list-link">
-                                <span class="profile-img-content" style="background-image: url(https://bootdey.com/img/Content/avatar/avatar3.png);"></span>
-                            </a>
-                        </div>
-                        <div class="profile-img-list-item">
-                            <a href="#" data-lity="" class="profile-img-list-link">
-                                <span class="profile-img-content" style="background-image: url(https://bootdey.com/img/Content/avatar/avatar5.png);"></span>
-                            </a>
-                        </div>
-                        <div class="profile-img-list-item with-number">
-                            <a href="#" data-lity="" class="profile-img-list-link">
-                                <span class="profile-img-content" style="background-image: url(https://bootdey.com/img/Content/avatar/avatar4.png);"></span>
-                                <div class="profile-img-number">+12</div>
-                            </a>
-                        </div>
-                    </div>
-                    <hr class="mb-1 opacity-1" />
-
-                    <div class="row text-center fw-bold">
-                        
-                        <div class="col">
-                            <a href="#" class="text-body text-opacity-50 text-decoration-none d-block p-2"> <i class="far fa-comment me-1 d-block d-sm-inline"></i> Comment </a>
-                        </div>
-                       
-                    </div>
-                    <hr class="mb-3 mt-1 opacity-1" />
-                    <div class="d-flex align-items-center">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" width="35" class="rounded-circle" />
-                        <div class="flex-fill ps-2">
-                            <div class="position-relative d-flex align-items-center">
-                                <input type="text" class="form-control rounded-pill bg-white bg-opacity-15" style="padding-right: 120px;" placeholder="Tulis Komentar..." />
-                                <div class="position-absolute end-0 text-center">
-                                    <a href="#" class="text-body text-opacity-50 me-2"><i class="fa fa-smile"></i></a>
-                                    <a href="#" class="text-body text-opacity-50 me-2"><i class="fa fa-camera"></i></a>
-                                    <a href="#" class="text-body text-opacity-50 me-2"><i class="fa fa-video"></i></a>
-                                    <a href="#" class="text-body text-opacity-50 me-3"><i class="fa fa-paw"></i></a>
+        <div class="container profile">
+            <div class="row">
+                @foreach ($posts as $post)
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="flex-fill ps-2">
+                                    <div class="fw-bold">
+                                        <a href="#" class="text-decoration-none">{{ $post->nama }}</a>
+                                    </div>
+                                    <div class="small text-body text-opacity-50">{{ $post->created_at->format('F d') }}</div>
                                 </div>
                             </div>
+                            <p>{{ $post->pesan }}</p>
+                            <div class="profile-img-list">
+                                <div class="profile-img-list-item main">
+                                    <a href="#" data-lity="" class="profile-img-list-link">
+                                        <img src="{{ asset('storage/' . $post->gambar) }}" alt="gambar" class="img-fluid">
+                                    </a>
+                                </div>
+                            </div>
+                           
+                            <div class="row text-center fw-bold">
+                                <div class="col">
+                                    <a href="#" class="text-body text-opacity-50 text-decoration-none d-block p-2">
+                                        <i class="far fa-comment me-1 d-block d-sm-inline"></i> Comment
+                                    </a>
+                                </div>
+                            </div>
+                            <hr class="mb-3 mt-1 opacity-1" />
+                            
+                            <div class="d-flex align-items-center">
+                                <div class="flex-fill ps-2">
+                                <div class="position-relative d-flex align-items-center">
+                                <form method="POST" action="{{ route('comments.store') }}">
+                                    @csrf
+                                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                        <input type="text" name="comment" class="form-control rounded-pill bg-white bg-opacity-15" style="padding-right: 120px;" placeholder="Tulis Komentar..." />
+                                        <button type="submit"   >
+                                            <img src="/komunitas/send.png" alt="Submit" style="width: 30px; height: auto;">
+                                        </button>
+                                </form>
+                                    </div>  
+                                </div>
+                            </div>
+
+                            <div class="komentar-list mt-3">
+                                @if ($post->comments()->exists())
+                                    @foreach ($post->comments as $comment)
+                                        <div class="komentar-item mb-2 p-2 rounded bg-light">
+                                            <strong>{{ $comment->username }}</strong>
+                                            <p>{{ $comment->comment }}</p>
+                                            <div class="small text-muted">{{ $comment->created_at->diffForHumans() }}</div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <p class="text-muted">Belum ada komentar.</p>
+                                @endif
+                                </div>
+
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center mb-3">
-                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" width="50" class="rounded-circle" /></a>
-                        <div class="flex-fill ps-2">
-                            <div class="fw-bold"><a href="#" class="text-decoration-none">Mister M</a> at <a href="#" class="text-decoration-none">Kalimantan</a></div>
-                            <div class="small text-body text-opacity-50">May 5</div>
-                        </div>
-                    </div>
-
-                    <p>Ikanku kena Bacterial Aeromanas Disease, gimana caranya balik modal?</p>
-                    <div class="profile-img-list">
-                        <div class="profile-img-list-item main">
-                            <a href="#" data-lity="" class="profile-img-list-link">
-                                <span class="profile-img-content" style="background-image: url(https://bootdey.com/img/Content/avatar/avatar6.png);"></span>
-                            </a>
-                        </div>
-                        <div class="profile-img-list-item main">
-                            <a href="#" data-lity="" class="profile-img-list-link">
-                                <span class="profile-img-content" style="background-image: url(https://bootdey.com/img/Content/avatar/avatar7.png);"></span>
-                            </a>
-                        </div>
-                        <div class="profile-img-list-item">
-                            <a href="#" data-lity="" class="profile-img-list-link">
-                                <span class="profile-img-content" style="background-image: url(https://bootdey.com/img/Content/avatar/avatar4.png);"></span>
-                            </a>
-                        </div>
-                        <div class="profile-img-list-item">
-                            <a href="#" data-lity="" class="profile-img-list-link">
-                                <span class="profile-img-content" style="background-image: url(https://bootdey.com/img/Content/avatar/avatar3.png);"></span>
-                            </a>
-                        </div>
-                        <div class="profile-img-list-item">
-                            <a href="#" data-lity="" class="profile-img-list-link">
-                                <span class="profile-img-content" style="background-image: url(https://bootdey.com/img/Content/avatar/avatar2.png);"></span>
-                            </a>
-                        </div>
-                        <div class="profile-img-list-item">
-                            <a href="#" data-lity="" class="profile-img-list-link">
-                                <span class="profile-img-content" style="background-image: url(https://bootdey.com/img/Content/avatar/avatar1.png);"></span>
-                            </a>
-                        </div>
-                    </div>
-                    <hr class="mb-1 opacity-1" />
-
-                    <div class="row text-center fw-bold">
-                
-                        <div class="col">
-                            <a href="#" class="text-body text-opacity-50 text-decoration-none d-block p-2"> <i class="far fa-comment me-1 d-block d-sm-inline"></i> Comment </a>
-                        </div>
-  
-                    </div>
-                    <hr class="mt-1 opacity-1" />
-                    <div class="d-flex align-items-center">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" width="35" class="rounded-circle" />
-                        <div class="flex-fill ps-2">
-                            <div class="position-relative d-flex align-items-center">
-                                <input type="text" class="form-control rounded-pill bg-white bg-opacity-15" style="padding-right: 120px;" placeholder="Tulis Komentar..." />
-                                <div class="position-absolute end-0 text-center">
-                                    <a href="#" class="text-body text-opacity-50 me-2"><i class="fa fa-smile"></i></a>
-                                    <a href="#" class="text-body text-opacity-50 me-2"><i class="fa fa-camera"></i></a>
-                                    <a href="#" class="text-body text-opacity-50 me-2"><i class="fa fa-video"></i></a>
-                                    <a href="#" class="text-body text-opacity-50 me-3"><i class="fa fa-paw"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
-</div>
-</div>
+      
     
 
 

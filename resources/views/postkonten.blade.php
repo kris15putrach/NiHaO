@@ -4,20 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nihao! Scan Ikan Nilamu!</title>
-    <link href="\postkomunitas\postkomunitas.css" rel="stylesheet">
+    <title>Nihao! Upload Konten</title>
+    <link href="/postkomunitas/postkomunitas.css" rel="stylesheet">
     <link href="/bootstrap-5.3.3-dist/css/bootstrap.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="\postkomunitas\postkomunitas.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <style>
-
-    </style>
 </head>
 
 <body>
-
-    <header>
+<header>
         <div class="logo">
             <img src="/tampilanutama/headercamera.png" alt="NIHAO Logo">
             <h1>NiHaO</h1>
@@ -50,39 +44,34 @@
         </div>
     </header>
 
-    </section>
-        </div>
+    <section>
         <div class="col-md-5">
-            <section class="panel  timeline-post-to">
+            <section class="panel timeline-post-to">
                 <div class="panel-body">
-                    <form role="form">
-                        <textarea class="form-control" placeholder="Apa yang ada dipikiran Mu?"></textarea>
-                        <div class="row">
-                        <div class="col-sm-6">
+                    <form action="{{ route('unggah') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                     
-                        
-                        <button type="submit" class="upgambar">
+                        <input type="text" id="form3Example4cg" class="form-control form-control-lg" name="nama" value="{{ session('username') }}" readonly style="display: none;" />
+                        <textarea class="form-control" placeholder="Apa yang ada dipikiran Mu?" name="pesan"></textarea>
+                                             
+                        <label for="gambar-upload" class="upgambar">
                             <img src="/postkomunitas/up_img.png" alt="Gambar">
-                        </button>
+                        </label>
+                        <input type="file" name="gambar" id="gambar-upload" style="display: none;" required />
+
+                        <div class="buttons">
+                            <button type="submit"><b>Unggah</b></button>
+                            <button onclick="window.location.href='postingan'"><b>Kembali</b></button>
+                        </div>
+                        
                     </form>
+                    
                 </div>
-            </section> 
+            </section>
+        </div>
+    </section>
 
-            <div class="buttons">
-                <button type="submit"><b>Unggah</b></button>
-                <button onclick="window.location.href='komu'"><b>Kembali</b> </button>
-            </div>
-
-
-
-    <script>
-       
-
-    </script>
-
-<script src="\postkomunitas\postkomunitas.js"></script>
-
-
+    <script src="/postkomunitas/postkomunitas.js"></script>
 </body>
 
 </html>

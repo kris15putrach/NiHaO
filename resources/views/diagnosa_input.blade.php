@@ -142,7 +142,7 @@
 
 
         function closeCamera() {
-        // Menyembunyikan kamera-container
+        // Hide kamera
         document.getElementById('kamera-container').style.display = 'none';
         // Stop video
         const stream = video.srcObject;
@@ -152,7 +152,7 @@
             track.stop();
         });
 
-        // Menampilkan kembali video
+        // Menampilkan kembali kamera
         video.style.display = 'block';
         // Sembunyikan canvas
         canvas.style.display = 'none';

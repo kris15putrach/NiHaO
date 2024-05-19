@@ -34,7 +34,7 @@ header {
 }
 
 nav {
-    margin-left: auto; /* Menambahkan margin-left auto */
+    margin-left: auto;
 }
 
 nav ul {
@@ -85,13 +85,13 @@ nav ul li a:hover {
     display: block;
     transition: 0.3s;
 }
+
 .sidebar a:last-child {
-    margin-bottom: 250  px;
+    margin-bottom: 250px;
 }
 
-
 .sidebar a:hover {
-    color: #5CA3AC; 
+    color: #5CA3AC;
 }
 
 .sidebar .closebtn {
@@ -113,7 +113,6 @@ nav ul li a:hover {
 }
 
 .openbtn:hover {
-    
     background-color: #5CA3AC;
 }
 
@@ -123,51 +122,43 @@ nav ul li a:hover {
 }
 
 @media screen and (max-height: 450px) {
-    .sidebar {padding-top: 15px;}
-    .sidebar a {font-size: 18px;}
+    .sidebar { padding-top: 15px; }
+    .sidebar a { font-size: 18px; }
 }
-
 
 .logoutbtn a {
     color: #E81313;
     text-decoration: none;
     transition: 0.3s;
-    margin-top: 40px; 
+    margin-top: 40px;
 }
 
 .logoutbtn a:hover {
-    color: #5CA3AC; /* Warna merah */body{
-    margin-top:20px;
-    background:#eee;
-}
-.profile .profile-img-list {
-    list-style-type: none;
-    margin: -0.1rem;
-    padding: 0;
+    color: #5CA3AC;
 }
 
-.profile .profile-img-list .profile-img-list-item.main {
-    width: 50%;
-}
-.profile .profile-img-list:after, .profile .profile-img-list:before {
+.profile .profile-img-list:after,
+.profile .profile-img-list:before {
     content: "";
     display: table;
     clear: both;
 }
+
 .profile .profile-img-list .profile-img-list-item {
-    width: 25%;
+    width: 100%;
     padding: 0.1rem;
-    float: left;
+    float: right;
 }
 
-.profile .profile-img-list .profile-img-list-item .profile-img-list-link {
+.profile-img-list-item .profile-img-list-link {
     display: block;
     padding-top: 75%;
     overflow: hidden;
     position: relative;
 }
 
-.profile .profile-img-list .profile-img-list-item .profile-img-list-link .profile-img-content, .profile .profile-img-list .profile-img-list-item .profile-img-list-link img {
+.profile-img-content,
+.profile-img-list-link img {
     position: absolute;
     top: 0;
     left: 0;
@@ -178,132 +169,14 @@ nav ul li a:hover {
     background-position: center;
     background-repeat: no-repeat;
 }
-
-.profile .profile-img-list .profile-img-list-item .profile-img-list-link .profile-img-content:before, .profile .profile-img-list .profile-img-list-item .profile-img-list-link img:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.profile .profile-img-list .profile-img-list-item {
-    width: 25%;
-    padding: 0.1rem;
-    float: left;
-}
-
-.profile .profile-img-list:after, .profile .profile-img-list:before {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.profile .profile-img-list .profile-img-list-item.with-number .profile-img-number {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    color: #000;
-    font-size: 1.53125rem;
-    font-weight: 600;
-    line-height: 1.625rem;
-    margin-top: -0.765625rem;
-    text-align: center;
-    text-shadow: 2px 2px #fff;
-}
-}
-
-
-
-
-.profile .profile-img-list {
-    list-style-type: none;
-    margin: -0.1rem;
-    padding: 0;
-}
-
-.profile .profile-img-list .profile-img-list-item.main {
-    width: 50%;
-}
-.profile .profile-img-list:after, .profile .profile-img-list:before {
-    content: "";
-    display: table;
-    clear: both;
-}
-.profile .profile-img-list .profile-img-list-item {
-    width: 25%;
-    padding: 0.1rem;
-    float: left;
-}
-
-.profile .profile-img-list .profile-img-list-item .profile-img-list-link {
-    display: block;
-    padding-top: 75%;
-    overflow: hidden;
-    position: relative;
-}
-
-.profile .profile-img-list .profile-img-list-item .profile-img-list-link .profile-img-content, .profile .profile-img-list .profile-img-list-item .profile-img-list-link img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    max-width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.profile .profile-img-list .profile-img-list-item .profile-img-list-link .profile-img-content:before, .profile .profile-img-list .profile-img-list-item .profile-img-list-link img:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.profile .profile-img-list .profile-img-list-item {
-    width: 25%;
-    padding: 0.1rem;
-    float: left;
-}
-
-.profile .profile-img-list:after, .profile .profile-img-list:before {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.profile .profile-img-list .profile-img-list-item.with-number .profile-img-number {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    color: #000;
-    font-size: 1.53125rem;
-    font-weight: 600;
-    line-height: 1.625rem;
-    margin-top: -0.765625rem;
-    text-align: center;
-    text-shadow: 2px 2px #fff;
-}
-
-
 
 .welcome {
     font-size: 30px;
     text-align: center;
     font-family: 'Poppins';
     height: 60px;
-  }
+}
 
-  
 .subtext {
     color: #3F5A9E;
     text-align: center;
@@ -312,19 +185,22 @@ nav ul li a:hover {
 
 .komusi {
     margin-top: 100px;
-    height: 100px;
+    margin-bottom: 100px;
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .pertama {
     height: 200px;
 }
 
-.postkontent{
-    height: 100;
+.postkontent {
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .button {
@@ -337,9 +213,49 @@ nav ul li a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-  }
+}
 
-  .button:hover {
+.button:hover {
     background-color: #5CA3AC;
     transform: translateY(-2px);
 }
+
+.submit-komentar {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.komentar-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.komentar-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+}
+
+button[type="submit-komentar"] {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block; /* Tambahkan baris ini */
+}
+
+button[type="submit-komentar"]:hover {
+    background-color: #5CA3AC;
+    transform: translateY(-2px);
+}
+

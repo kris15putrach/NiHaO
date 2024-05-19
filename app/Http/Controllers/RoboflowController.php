@@ -98,7 +98,7 @@ public function index()
 
     $pythonScript = public_path('diagnosa_output/diagnosa.py');
 
-    // Jalankan proses eksternal menggunakan proc_open()
+    // Menjalankan proses eksternal menggunakan proc_open()
     $descriptorspec = [
         0 => ["pipe", "r"], // stdin
         1 => ["pipe", "w"], // stdout
@@ -125,15 +125,13 @@ public function index()
         // Konversi ke format JSON
         $relevantOutputJSON = json_decode($relevantOutput, true);
 
-        // Tampilkan dalam format yang lebih mudah dibaca
-        // dd($relevantOutputJSON);
 
         // Ambil bagian 'predictions' dari respons
         if (isset($relevantOutputJSON['predictions'])) {
             $predictions = $relevantOutputJSON['predictions'];
         
             // Inisialisasi array untuk menyimpan nilai "class"
-            $classes = ["Kondisi Ikan:"];
+            $classes = ["Kondisi Ikan"];
         
             // Iterasi melalui prediksi dan hanya menyimpan nilai "class"
             foreach ($predictions as $prediction) {
@@ -142,11 +140,10 @@ public function index()
                 }
             }
         
-            // Kemudian, Anda dapat menggunakan $classes sesuai kebutuhan Anda
         
             return view('diagnosa_output', ['data' => $classes, 'imageName' => $imageName]);
         } else {
-            // Jika tidak ada prediksi, kembalikan pesan kesalahan
+            // Jika tidak ada prediksi
             return response()->json([
                 'status' => 'error',
                 'message' => 'No predictions found.'
