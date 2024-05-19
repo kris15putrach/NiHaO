@@ -35,16 +35,21 @@ Route::get('/login', function () {
 });
 
 Route::get('/postingan', function () {
-    return view('postkonten');
+    return view('postkonten')->middleware('check.session');
+});
+Route::get('/lupa', function () {
+    return view('lupapassword');
 });
 
-Route::get('/kelolakomu', function () {
-    return view('kelolakomunitas');
+Route::get('/verif', function () {
+    return view('verifikasi_otp');
 });
+
+
 
 Route::get('/check-api-connection', [RoboflowController::class, 'checkApiConnection']);
 Route::get('/test', [RoboflowController::class, 'index']);  
-Route::post('/upload', [RoboflowController::class, 'upload']);
+Route::post('/upload', [RoboflowController::class, 'upload'])->middleware('check.session');
 
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\LoginController;
@@ -66,3 +71,12 @@ Route::delete('/akun/{id}', [AkunController::class, 'destroy']);
 
 Route::post('/comments/store', [KomunitasController::class, 'storeComment'])->name('comments.store');
 
+
+
+use App\Http\Controllers\CommentController;
+Route::get('/kelolakomu', function () {
+    return view('kelolakomunitas');
+});
+Route::get('/kelolakomu', [UnggahController::class, 'index']);
+Route::delete('/unggah/{id}', [UnggahController::class, 'destroy']);
+Route::delete('/comments/{id}', [CommentController::class, 'destroy']);
