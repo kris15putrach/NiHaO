@@ -62,7 +62,7 @@
                 <button class="button" onclick="window.location.href='input'">
             <img id="uploaded-image" src="\berandapembudidaya\Group 1.png" alt="Folder Icon" width="400" height="auto" />
                 </button>
-                <button class="button">
+                <button class="button" class="button" onclick="window.location.href='riwayat_diagnosis'">
 
                 <img id="uploaded-image" src="\berandapembudidaya\Group 2.png" alt="Folder Icon" width="400" height="auto" />
                 </button>

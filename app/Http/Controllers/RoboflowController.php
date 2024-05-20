@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Diagnosis;
+use Illuminate\Support\Facades\DB;
 use SebastianBergmann\Type\TrueType;
 
 class RoboflowController extends Controller
@@ -84,72 +86,73 @@ public function index()
     }
 
     public function upload(Request $request)
-{
-    $request->validate([
-        'image' => 'required|image',
-    ]);
+    {
+        $request->validate([
+            'image' => 'required|image',
+        ]);
 
-    $image = $request->file('image');
-    $imageName = time() . '.' . $image->getClientOriginalExtension();
-    
-    $image->move(public_path('diagnosa_output'), $imageName);
+        $image = $request->file('image');
+        $imageContent = file_get_contents($image->getPathname());
 
-    $imageDataPath = public_path('diagnosa_output/' . $imageName);
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('diagnosa_output'), $imageName);
 
-    $pythonScript = public_path('diagnosa_output/diagnosa.py');
+        $imageDataPath = public_path('diagnosa_output/' . $imageName);
+        $pythonScript = public_path('diagnosa_output/diagnosa.py');
 
-    // Menjalankan proses eksternal menggunakan proc_open()
-    $descriptorspec = [
-        0 => ["pipe", "r"], // stdin
-        1 => ["pipe", "w"], // stdout
-        2 => ["pipe", "w"]  // stderr
-    ];
+        $descriptorspec = [
+            0 => ["pipe", "r"],
+            1 => ["pipe", "w"],
+            2 => ["pipe", "w"]
+        ];
 
-    $process = proc_open("python $pythonScript $imageDataPath", $descriptorspec, $pipes);
+        $process = proc_open("python $pythonScript $imageDataPath", $descriptorspec, $pipes);
 
-    if (is_resource($process)) {
-        // Baca output dari proses
-        $output = stream_get_contents($pipes[1]);
-        fclose($pipes[1]);
+        if (is_resource($process)) {
+            $output = stream_get_contents($pipes[1]);
+            fclose($pipes[1]);
+            proc_close($process);
 
-        // Tutup proses
-        proc_close($process);
+            $startPos = strpos($output, "{");
+            $endPos = strrpos($output, "}");
 
-        // Menghilangkan bagian atas dan bawah dari output
-        $startPos = strpos($output, "{");
-        $endPos = strrpos($output, "}");
+            $relevantOutput = substr($output, $startPos, $endPos - $startPos + 1);
+            $relevantOutputJSON = json_decode($relevantOutput, true);
 
-        // Ambil bagian yang relevan dari output
-        $relevantOutput = substr($output, $startPos, $endPos - $startPos + 1);
-
-        // Konversi ke format JSON
-        $relevantOutputJSON = json_decode($relevantOutput, true);
-
-
-        // Ambil bagian 'predictions' dari respons
-        if (isset($relevantOutputJSON['predictions'])) {
-            $predictions = $relevantOutputJSON['predictions'];
-        
-            // Inisialisasi array untuk menyimpan nilai "class"
-            $classes = ["Kondisi Ikan"];
-        
-            // Iterasi melalui prediksi dan hanya menyimpan nilai "class"
-            foreach ($predictions as $prediction) {
-                if (isset($prediction['class'])) {
-                    $classes[] = $prediction['class'];
+            if (isset($relevantOutputJSON['predictions'])) {
+                $predictions = $relevantOutputJSON['predictions'];
+                $classes = ["Kondisi Ikan"];
+                foreach ($predictions as $prediction) {
+                    if (isset($prediction['class'])) {
+                        $classes[] = $prediction['class'];
+                    }
                 }
+
+                // Simpan hasil ke database
+                $username = $request->session()->get('username');
+                $diagnosis = new Diagnosis();
+                $diagnosis->username = $username;
+                $diagnosis->image = $imageContent;
+                $diagnosis->results = $classes;
+                $diagnosis->save();
+
+                return view('diagnosa_output', ['data' => $classes, 'imageName' => $imageName]);
+            } else {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'No predictions found.'
+                ], 500);
             }
-        
-        
-            return view('diagnosa_output', ['data' => $classes, 'imageName' => $imageName]);
-        } else {
-            // Jika tidak ada prediksi
-            return response()->json([
-                'status' => 'error',
-                'message' => 'No predictions found.'
-            ], 500);
         }
-}
+    }
+
+    public function showHistory(Request $request)
+    {
+        $username = $request->session()->get('username');
+        $diagnoses = Diagnosis::where('username', $username)->get();
+
+        return view('riwayatdiagnosis', ['diagnoses' => $diagnoses]);
+    }
 }
 
-}
+
