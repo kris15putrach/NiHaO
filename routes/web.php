@@ -88,3 +88,30 @@ Route::get('/riwayat_diagnosis', function () {
     return view('riwayatdiagnosis');
 });
 Route::get('/riwayat_diagnosis', [RoboflowController::class, 'showHistory'])->middleware('auth');
+
+// Lupa pW
+
+Route::get('/lupa', function () {
+    return view('lupapassword');
+});
+
+Route::post('/request-otp', [LoginController::class, 'requestOtp'])->name('requestOtp');
+
+Route::get('/verify-otp', [LoginController::class, 'showVerifyForm'])->name('showVerifyForm');
+
+Route::post('/verify-otp', [LoginController::class, 'verifyOtp'])->name('verifyOtp');
+
+Route::get('/reset', [LoginController::class, 'reset'])->name('reset');
+// end
+
+Route::get('/verif', function () {
+    return view('verifikasi_otp');
+});
+
+Route::get('/otp', function () {
+    return view('OTP_Fonnte');
+});
+
+// Route::get('/reset', function () {
+//     return view('reset_password');
+// });
