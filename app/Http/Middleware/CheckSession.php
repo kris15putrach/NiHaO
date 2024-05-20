@@ -17,7 +17,7 @@ class CheckSession
         }
 
         $lastActivity = session('last_activity', time());
-        if ((time() - $lastActivity) > 180) { // per detik
+        if ((time() - $lastActivity) > 60) { // per detik
             session()->flush();
             return redirect('/login')->withErrors(['msg' => 'Silahkan Login kembali']);
         }

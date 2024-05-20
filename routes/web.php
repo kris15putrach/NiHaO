@@ -35,7 +35,7 @@ Route::get('/login', function () {
 });
 
 Route::get('/postingan', function () {
-    return view('postkonten')->middleware('check.session');
+    return view('postkonten');
 });
 Route::get('/lupa', function () {
     return view('lupapassword');
@@ -80,3 +80,9 @@ Route::get('/kelolakomu', function () {
 Route::get('/kelolakomu', [UnggahController::class, 'index']);
 Route::delete('/unggah/{id}', [UnggahController::class, 'destroy']);
 Route::delete('/comments/{id}', [CommentController::class, 'destroy']);
+
+
+
+Route::get('/riwayat_diagnosis', function () {
+    return view('riwayatdiagnosis');
+});

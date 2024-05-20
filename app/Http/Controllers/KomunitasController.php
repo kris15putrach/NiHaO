@@ -10,7 +10,7 @@ class KomunitasController extends Controller
 {
     public function index()
     {
-        $posts = Unggah::all(); // Mengambil semua data dari tabel unggah
+        $posts = Unggah::all(); // Mengambil semua data darii tabel unggah
         return view('komunitas', compact('posts'));
 
     }
@@ -24,7 +24,7 @@ class KomunitasController extends Controller
 
     $comment = new Comment();
     $comment->post_id = $request->post_id;
-    $comment->username = session('username'); // Mengambil username dari session
+    $comment->username = session('username'); // mengambil username Dari session
     $comment->comment = $request->comment;
     $comment->save();
 

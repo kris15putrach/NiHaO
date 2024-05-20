@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nihao! Selamat Datang</title>
-    <link href="\kelolaakun\kelolaakun.css" rel="stylesheet">
+    <link href="\riwayatdiagnosis\riwayatdiagnosis.css" rel="stylesheet">
     <link href="/bootstrap-5.3.3-dist/css/bootstrap.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="\riwayatdiagnosis\riwayatdiagnosis.js"></script>
 </head>
 
 <body>
@@ -42,8 +43,8 @@
     </header>
 
     <div class="sambutan">
-        <div class="welcome"><b>Fitur Kelola Akun</b></div>
-        <div class="subtext"><b>NiHaO Admin! Silahkan Kelola Akun Pengguna NiHaO disini</b></div>
+        <div class="welcome"><b>Fitur Riwayat Diagnosa</b></div>
+        <div class="subtext"><b>NiHaO Pengguna! Silahkan lihat hasil diagnosa yang pernah kamu lakukan sebelumnya</b></div>
     </div>
 
     <div class="container">
@@ -52,7 +53,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-xs-5">
-                            <h2>Akun Pengguna <b>NiHaO!</b></h2>
+                            <h2>NiHao!<b> Hasil Diagnosa</b></h2>
                         </div>
                     </div>
                 </div>
@@ -60,62 +61,33 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Waktu Dibuat</th>
-                            <th>Role</th>
+                            <th>Gambar</th>
+                            <th>Hasil Diagnosis</th>
+                            <th>Waktu Diagnosis</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="akun-table-body">
-                        @foreach ($olah as $akun)
-                        <tr id="akun-{{ $akun->id }}">
-                            <td>{{ $loop->iteration }}</td>
-                            <td><a href="#">{{ $akun->username }}</a></td>
-                            <td>{{ $akun->email }}</td>
-                            <td>{{ $akun->created_at }}</td>
-                            <td>{{ $akun->role }}</td>
+    
+                        <tr>
+                            <td>Nomor</td>
+                            <td>Gambar</td>
+                            <td>Hasil</td>
+                            <td>Waktu</td>
                             <td>
-                                <a href="#" class="delete" data-id="{{ $akun->id }}" title="Delete" data-toggle="tooltip">
+                                <a href="#" class="delete"  title="Delete" data-toggle="tooltip">
                                     <img id="uploaded-image" src="\kelolaakun\trashcan.png" alt="Trash Icon" width="50" height="auto" />
                                 </a>
                             </td>
                         </tr>
-                        @endforeach
+                  
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <script>
-        $(document).ready(function () {
-            $('.delete').click(function (e) {
-                e.preventDefault();
-                var id = $(this).data('id');
-                if (confirm('Anda yakin ingin menghapus Akun ini?')) {
-                    $.ajax({
-                        url: '/akun/' + id,
-                        type: 'DELETE',
-                        data: {
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function (response) {
-                            if (response.success) {
-                                $('#akun-' + id).remove();
-                                alert(response.success);
-                            } else {
-                                alert(response.error);
-                            }
-                        },
-                        error: function (response) {
-                            alert('Terjadi Error. Tolong Ulang Kembali');
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+  
 </body>
 
 </html>
