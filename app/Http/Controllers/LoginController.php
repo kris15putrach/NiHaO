@@ -14,24 +14,32 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
-
         $credentials = $request->only('username', 'password');
 
-        if (Auth::attempt($credentials)) {
-            // Menyimpan username ke dalam session
-            $request->session()->put('username', $request->username);
-            $request->session()->put('last_activity', time());
+        $remember = $request->has('remember');
 
-            // Redirect ke halaman beranda pembudidaya
+        if (Auth::attempt($credentials)) {
+            // Jika autentikasi berhasil, arahkan ke halaman yang sesuai
             return redirect()->intended('/beranda_pembudidaya');
         }
 
-        return redirect()->back()->withErrors(['msg' => 'Username atau password salah']);
+        $user = Akun::where('username', $request->username)->first();
+
+        if (!$user) {
+            // Jika username tidak ditemukan, tampilkan pesan error khusus
+            return redirect()->back()->withErrors(['msg' => 'Username tidak ditemukan']);
+        }
+
+        // Jika autentikasi gagal, cek apakah kesalahan terjadi pada username atau password
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password], $remember)) {
+            // Jika autentikasi berhasil, arahkan ke halaman yang sesuai
+            return redirect()->intended('/beranda_pembudidaya');
+        }
+
+        // Jika autentikasi gagal karena password salah, tampilkan pesan error khusus
+        return redirect()->back()->withErrors(['msg' => 'Password salah']);
     }
+
     public function requestOtp(Request $request)
     {
         $request->validate([
@@ -104,5 +112,8 @@ class LoginController extends Controller
     {
         return view('reset_password');
     }
+    public function lupa()
+    {
+        return view('lupapassword');
+    }
 }
-

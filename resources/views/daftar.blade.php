@@ -1,8 +1,8 @@
 <?php
 $host = '127.0.0.1';
-$db   = 'nihao';
-$user = 'krisna';
-$pass = 'krisna';
+$db   = 'laravel';
+$user = 'root';
+$pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -67,6 +67,10 @@ $options = [
                                             <div class="form-group">
                                                 <label class="form-label" for="form3Example1cg"><b>Email:</b></label>
                                                 <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="email" required />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label" for="form3Example1cg"><b>Nomor Whatsapp:</b></label>
+                                                <input placeholder="0812xxxx" id="form3Example1cg" class="form-control form-control-lg" name="nomor" required />
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label" for="form3Example4cg"><b>Username:</b></label>

@@ -35,7 +35,7 @@
                     <div class="kontainer_form">
                         <div class="form-group">
                             <label class="form-label" for="nomor"><b>Nomor Whatsapp</b></label>
-                            <input placeholder="62812xxxx" type="text" id="nomor" class="form-control form-control-lg" name="nomor" required />
+                            <input placeholder="0812xxxx" type="text" id="nomor" class="form-control form-control-lg" name="nomor" required />
                         </div>
                         <div class="buttons">
                             <button type="submit" class="btn btn-primary"><b>Kirim Kode OTP</b></button>

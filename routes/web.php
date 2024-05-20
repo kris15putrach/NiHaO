@@ -40,7 +40,6 @@ Route::get('/postingan', function () {
 Route::get('/lupa', function () {
     return view('lupapassword');
 });
-
 Route::get('/verif', function () {
     return view('verifikasi_otp');
 });
@@ -102,6 +101,10 @@ Route::get('/verify-otp', [LoginController::class, 'showVerifyForm'])->name('sho
 Route::post('/verify-otp', [LoginController::class, 'verifyOtp'])->name('verifyOtp');
 
 Route::get('/reset', [LoginController::class, 'reset'])->name('reset');
+
+Route::get('/lupa', [LoginController::class, 'lupa'])->name('lupa');
+
+
 // end
 
 Route::get('/verif', function () {
