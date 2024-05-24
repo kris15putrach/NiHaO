@@ -93,11 +93,14 @@ class LoginController extends Controller
         $otpRecord = Otp::where('nomor', $nomor)->where('otp', $otp)->first();
 
         if ($otpRecord && (time() - $otpRecord->waktu <= 300)) {
-            $request->session()->forget('nomor');  //kalo mau buat reset pasword bagian ini dicommand aja
-            // aku liat di tabel akun gaada nomor hp mungkin ntar tambahin inputan buat no hpnya
-            // terus kalo udah ada no hp nya bisa dibikin buat reset password by nomor hp
+            $akun = Akun::where('nomor', $nomor)->first();
 
-            return redirect()->route('reset');
+            if ($akun) {
+                return redirect()->route('reset')->with('akun', $akun);
+            } else {
+                // If no matching user is found, show a specific message
+                return "User with this phone number not found";
+            }
         } elseif ($otpRecord) {
             // kalo mau kasih massage bagian ini
             return "OTP expired";
@@ -112,6 +115,49 @@ class LoginController extends Controller
     {
         return view('reset_password');
     }
+
+    public function resetPassword(Request $request)
+    {
+        // Validate the new password and its confirmation
+        $request->validate([
+            'newPassword' => 'required|string|min:8|confirmed',
+        ], [
+            'newPassword.required' => 'Password baru wajib diisi.',
+            'newPassword.min' => 'Password baru harus terdiri dari minimal 8 karakter.',
+            'newPassword.confirmed' => 'Konfirmasi password tidak cocok.',
+        ]);
+
+        // Retrieve the phone number from the session
+        $nomor = $request->session()->get('nomor');
+
+        // Find the corresponding user in the 'akuns' table using the phone number
+        $akun = Akun::where('nomor', $nomor)->first();
+
+        if ($akun) {
+            // Update the user's password after hashing it
+            $akun->password = bcrypt($request->input('newPassword'));
+            $akun->save();
+
+            // Clear the phone number from the session
+            $request->session()->forget('nomor');
+
+            // Flash a success message to the session
+            session()->flash('status', 'Password berhasil direset. Silakan login dengan password baru Anda.');
+
+            // Redirect the user to the login page with a success message
+            return redirect()->route('login');
+        } else {
+            // Flash an error message to the session
+            session()->flash('error', 'Pengguna dengan nomor telepon ini tidak ditemukan.');
+
+            // If no matching user is found, show an error message
+            return redirect()->back();
+        }
+    }
+
+
+
+
     public function lupa()
     {
         return view('lupapassword');

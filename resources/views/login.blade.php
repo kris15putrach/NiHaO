@@ -37,6 +37,12 @@
             </div>
             @endif
 
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             <!-- Form Login -->
             <form method="POST" action="{{ route('login') }}">
                 @csrf

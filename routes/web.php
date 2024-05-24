@@ -7,7 +7,7 @@ use App\Http\Controllers\RoboflowController;
 
 Route::get('/', function () {
     return view('tampilanutama');
-    
+
 });
 
 Route::get('/input', function () {
@@ -47,7 +47,7 @@ Route::get('/verif', function () {
 
 
 Route::get('/check-api-connection', [RoboflowController::class, 'checkApiConnection']);
-Route::get('/test', [RoboflowController::class, 'index']);  
+Route::get('/test', [RoboflowController::class, 'index']);
 Route::post('/upload', [RoboflowController::class, 'upload'])->middleware('check.session');
 
 use App\Http\Controllers\RegistrasiController;
@@ -101,6 +101,8 @@ Route::get('/verify-otp', [LoginController::class, 'showVerifyForm'])->name('sho
 Route::post('/verify-otp', [LoginController::class, 'verifyOtp'])->name('verifyOtp');
 
 Route::get('/reset', [LoginController::class, 'reset'])->name('reset');
+Route::post('/reset', [LoginController::class, 'resetPassword'])->name('resetPassword');
+
 
 Route::get('/lupa', [LoginController::class, 'lupa'])->name('lupa');
 

@@ -9,6 +9,8 @@ class Akun extends Model
 {
     use HasFactory;
 
+    protected $table = 'akuns';
+
     protected $fillable = ['email', 'username', 'password', 'role', 'nomor'];
 
     public $timestamps = true;

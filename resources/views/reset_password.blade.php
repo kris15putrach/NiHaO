@@ -29,9 +29,26 @@
 
     <div class="gabung">
         <div class="container">
+            @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+        <div style="color: red;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
             <div class="form-container">
                 <!-- Form Ganti Password -->
-                <form method="POST" action="FILE CONTROLLER">
+                <form method="POST" action="{{ route('resetPassword') }}">
+                    @csrf
                     <div class="kontainer_form">
                         <div class="form-group">
                             <label class="form-label" for="newPassword"><b>Password Baru:</b></label>
@@ -39,13 +56,14 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="confirmNewPassword"><b>Konfirmasi Password Baru:</b></label>
-                            <input type="password" id="confirmNewPassword" class="form-control form-control-lg" name="confirmNewPassword" required />
+                            <input type="password" id="confirmNewPassword" class="form-control form-control-lg" name="newPassword_confirmation" required />
                         </div>
                         <div class="buttons">
                             <button type="submit" class="btn btn-primary"><b>Reset Password</b></button>
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
