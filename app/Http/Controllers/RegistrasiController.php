@@ -13,6 +13,7 @@ class RegistrasiController extends Controller
     {
         $request->validate([
             'email' => 'required|email|unique:akuns',
+            'nomor' => 'required|string|max:20',
             'username' => 'required|unique:akuns',
             'password' => 'required|min:6',
             'konfirmasi_password' => 'required|same:password',
@@ -21,6 +22,7 @@ class RegistrasiController extends Controller
 
         $akun = Akun::create([
             'email' => $request->email,
+            'nomor' => $request ->nomor,
             'username' => $request->username,
             'password' => bcrypt($request->password),
             'role' => $request->role,
