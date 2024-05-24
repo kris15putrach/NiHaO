@@ -20,7 +20,7 @@ Route::get('/output', function () {
 
 Route::get('/beranda_pembudidaya', function () {
     return view('beranda_pembudidaya');
-})->middleware('check.session');
+});
 
 Route::get('/beranda_admin', function () {
     return view('beranda_admin');
@@ -110,11 +110,3 @@ Route::get('/lupa', [LoginController::class, 'lupa'])->name('lupa');
 Route::get('/verif', function () {
     return view('verifikasi_otp');
 });
-
-Route::get('/otp', function () {
-    return view('OTP_Fonnte');
-});
-
-// Route::get('/reset', function () {
-//     return view('reset_password');
-// });
