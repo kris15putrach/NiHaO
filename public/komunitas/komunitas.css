@@ -150,24 +150,22 @@ nav ul li a:hover {
     float: right;
 }
 
-.profile-img-list-item .profile-img-list-link {
+.profile-img-list-link {
     display: block;
-    padding-top: 75%;
-    overflow: hidden;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%;
     position: relative;
 }
 
-.profile-img-content,
 .profile-img-list-link img {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    max-width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px; /* Membuat sudut gambar membulat */
 }
 
 .welcome {
@@ -206,7 +204,7 @@ nav ul li a:hover {
 
 .button {
     margin: 10px;
-    padding: 10px 20px;
+    padding: 10px;
     background-color: #cce2cd00;
     color: rgb(0, 0, 0);
     border: none;
@@ -214,11 +212,21 @@ nav ul li a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px; /* Sesuaikan lebar button */
+    height: 150px; /* Sesuaikan tinggi button */
 }
 
 .button:hover {
     background-color: #5CA3AC;
     transform: translateY(-2px);
+}
+
+.button img {
+    width: 400px; /* Sesuaikan ukuran gambar */
+    height: 150px;
 }
 
 .submit-komentar {
@@ -261,3 +269,13 @@ nav ul li a:hover {
     width: 30px;
     height: auto;
 }
+
+.panel {
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #ffa4a4, #573d3d);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #fff; 
+    height: auto;
+}
+
+

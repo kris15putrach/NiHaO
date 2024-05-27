@@ -10,9 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="/diagnosa_input/diagnosa_input.js"></script>
     <script src="/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
-    <style>
-
-    </style>
 </head>
 
 <body>
@@ -41,45 +38,43 @@
             <div class="logoutbtn">
               <a href="/login"><b><u>Log Out</u></b></a>
             </div>
-
         </div>
 
         <div id="main">
             <button class="openbtn" onclick="openNav()">&#9776;</button>
-
         </div>
     </header>
-
-
 
     <form action="/upload" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container">
+            <div class="content-wrapper">
+                <div class="upload-container">
+                    <label for="file-upload" class="custom-file-upload">
+                    <div class="daftar-text"><b>NiHaO! Silahkan Upload Gambar Anda Disini!</b></div>
+                        <img id="uploaded-image" src="/diagnosa_input/mid.png" alt="Folder Icon" width="800" height="auto" />
+                    </label>
 
-            <div class="upload-container">
-                <label for="file-upload" class="custom-file-upload">
-                    <img id="uploaded-image" src="/diagnosa_input/mid.png" alt="Folder Icon" width="800" height="auto" />
-                </label>
+                    <input id="file-upload" name="image" type="file" style="display:none;" />
 
-                <input id="file-upload" name="image" type="file" style="display:none;" />
-
-                <div class="butup">
-                    <button type="submit"><b>Upload</b></button>
-                    <button type="button" onclick="showCamera()"><b>Gunakan Kamera</b></button>
-                </div>
-            </div>
-
-            <div id="kamera-container" class="kamera-container" style="display: none;">
-                <label for="kamera-upload" class="kamera-file-upload">
-                    <video id="videoElement" autoplay width="500" height="500"></video>
-                    <canvas id="canvas" width="500" height="500" style="display:none;"></canvas>
-                </label>
-
-                <div class="butup">
-                    <button type="button" onclick="takePicture()" for="file-upload"><b>Ambil Gambar</b></button>
-                    <button type="button" onclick="closeCamera()"><b>Tutup Kamera</b></button>
+                    <div class="butup">
+                        <button type="submit"><b>Upload</b></button>
+                        <button type="button" onclick="showCamera()"><b>Gunakan Kamera</b></button>
+                    </div>
                 </div>
 
+                <div id="kamera-container" class="kamera-container" style="display: none;">
+                <div class="daftar-text"><b>NiHaO! Kamera Anda Tampil Disini</b></div>
+                    <label for="kamera-upload" class="kamera-file-upload">
+                        <video id="videoElement" autoplay width="500" height="500"></video>
+                        <canvas id="canvas" width="500" height="500" style="display:none;"></canvas>
+                    </label>
+
+                    <div class="butup-kamera">
+                        <button type="button" onclick="takePicture()" for="file-upload"><b>Ambil Gambar</b></button>
+                        <button type="button" onclick="closeCamera()"><b>Tutup Kamera</b></button>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
@@ -89,10 +84,8 @@
         const canvas = document.getElementById('canvas');
 
         function showCamera() {
-            // Menampilkan kamera-container
             document.getElementById('kamera-container').style.display = 'block';
 
-            // Mengambil izin akses kamera
             navigator.mediaDevices.getUserMedia({ video: true })
                 .then((stream) => {
                     video.srcObject = stream;
@@ -103,30 +96,22 @@
         }
 
         function takePicture() {
-            // Mengambil gambar dari video
             const context = canvas.getContext('2d');
             context.drawImage(video, 0, 0, canvas.width, 390);
-            // Tampilkan canvas
             canvas.style.display = 'block';
-            // Sembunyikan video
             video.style.display = 'none';
 
-            // Membuat objek File dari data gambar
             canvas.toBlob(function(blob) {
-                // Membuat objek File dari blob gambar dengan format jpg
                 const file = new File([blob], 'captured_image.jpg', { type: 'image/jpeg' });
 
-                // Membuat objek FileList
                 const filesList = new DataTransfer();
                 filesList.items.add(file);
 
-                // Memasukkan FileList ke dalam input dengan id="file-upload"
                 const fileInput = document.getElementById('file-upload');
                 fileInput.files = filesList.files;
             }, 'image/jpeg');
         }
 
-        // Polyfill untuk membuat objek FileListItem
         class FileListItem extends Array {
             constructor(items, options) {
                 super(...items);
@@ -139,24 +124,18 @@
             }
         }
 
-
-
         function closeCamera() {
-        // Hide kamera
-        document.getElementById('kamera-container').style.display = 'none';
-        // Stop video
-        const stream = video.srcObject;
-        const tracks = stream.getTracks();
+            document.getElementById('kamera-container').style.display = 'none';
+            const stream = video.srcObject;
+            const tracks = stream.getTracks();
 
-        tracks.forEach(track => {
-            track.stop();
-        });
+            tracks.forEach(track => {
+                track.stop();
+            });
 
-        // Menampilkan kembali kamera
-        video.style.display = 'block';
-        // Sembunyikan canvas
-        canvas.style.display = 'none';
-    }
+            video.style.display = 'block';
+            canvas.style.display = 'none';
+        }
     </script>
 
 </body>

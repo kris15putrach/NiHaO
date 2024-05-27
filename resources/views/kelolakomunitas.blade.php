@@ -81,50 +81,39 @@
                                             <img id="uploaded-image" src="\kelolakomunitas\trashcan.png" alt="Folder Icon" width="60px" height="auto" />
                                         </button>
                                     </form>
+                                    <button class="toggle-comments btn btn-primary" data-post-id="{{ $post->id }}">Show Komentar</button>
                                 </td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="table-responsive">
-            <div class="table-wrapper">
-                <div class="table-title">
-                    <div class="row">
-                        <div class="col-xs-5">
-                            <h2>Komentar Postingan <b>NiHaO!</b></h2>
-                        </div>
-                    </div>
-                </div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>    
-                            <th>Post_Id</th>
-                            <th>Username</th>
-                            <th>Komentar</th>
-                            <th>Waktu Post</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($comments as $comment)
-                            <tr>
-                                <td>{{ $comment->post_id }}</td>
-                                <td>{{ $comment->username }}</td>
-                                <td>{{ $comment->comment }}</td>
-                                <td>{{ $comment->created_at }}</td>
-                                <td>
-                                    <form action="/comments/{{ $comment->id }}" method="POST" class="delete-form" data-comment-id="{{ $comment->id }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="button delete-button">
-                                            <img id="uploaded-image" src="\kelolakomunitas\trashcan.png" alt="Folder Icon" width="60px" height="auto" />
-                                        </button> 
-                                    </form>
+                            <tr class="comments-row" data-post-id="{{ $post->id }}" style="display: none;">
+                                <td colspan="6">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Username</th>
+                                                <th>Komentar</th>
+                                                <th>Waktu Post</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($post->comments as $comment)
+                                                <tr>
+                                                    <td>{{ $comment->username }}</td>
+                                                    <td>{{ $comment->comment }}</td>
+                                                    <td>{{ $comment->created_at }}</td>
+                                                    <td>
+                                                        <form action="/comments/{{ $comment->id }}" method="POST" class="delete-form" data-comment-id="{{ $comment->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="button delete-button">
+                                                                <img id="uploaded-image" src="\kelolakomunitas\trashcan.png" alt="Folder Icon" width="60px" height="auto" />
+                                                            </button> 
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </td>
                             </tr>
                         @endforeach
@@ -138,7 +127,6 @@
         $(document).ready(function() {
             $('.delete-button').on('click', function(event) {
                 event.preventDefault(); // Prevent form submission
-                console.log('Delete button clicked');
                 var form = $(this).closest('.delete-form');
                 var confirmed = confirm('Anda Yakin Untuk Menghapus Ini?');
                 if (confirmed) {
@@ -147,16 +135,25 @@
                         type: 'POST',
                         data: form.serialize(),
                         success: function(response) {
-                            console.log('Item deleted successfully');
-                            // Remove the row from the table
                             form.closest('tr').remove();
                             alert('Item Berhasil Dihapus.');
                         },
                         error: function(xhr) {
-                            console.log('Error deleting item');
                             alert('Terjadi Error, Silahkan Ulang Kembali');
                         }
                     });
+                }
+            });
+
+            $('.toggle-comments').on('click', function() {
+                var postId = $(this).data('post-id');
+                var commentsRow = $('.comments-row[data-post-id="' + postId + '"]');
+                if (commentsRow.is(':visible')) {
+                    commentsRow.hide();
+                    $(this).text('Show Komentar');
+                } else {
+                    commentsRow.show();
+                    $(this).text('Hide Komentar');
                 }
             });
         });

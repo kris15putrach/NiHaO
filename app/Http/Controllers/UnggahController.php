@@ -41,7 +41,7 @@ class UnggahController extends Controller
     public function destroy($id)
     {
         Unggah::destroy($id);
-        return redirect('/kelolakomu')->with('success', 'Post deleted successfully.');
+        return redirect('/kelolakomu')->with('success', 'Item Berhasil Dihapus.');
     }
 }
 

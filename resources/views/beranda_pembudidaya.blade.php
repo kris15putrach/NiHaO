@@ -54,7 +54,7 @@
 
             <div class="container">
                 <div class="welcome"><B>WELCOME TO NiHaO!!!</B></div>
-                <div class="subtext"><b>selamat menikmati berbagai macam fitur yang berguna untuk anda semuanya</b> 
+                <div class="subtext"><b>Selamat menikmati berbagai macam fitur yang berguna untuk anda semuanya</b> 
             
             </div>
             

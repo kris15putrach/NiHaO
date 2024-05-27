@@ -27,9 +27,9 @@
         </nav>
     </header>
 
-    
 
     <div class="gabung">
+    <div class="daftar-text"><b>NiHaO! Silahkan LogIn Disini!</b></div>
         <div class="container">
 
         @if ($errors->any())
@@ -39,7 +39,7 @@
         @endforeach
     </div>
 @endif
-          
+            
                     <!-- Form Login -->
                     <form method="POST" action="{{ route('login') }}">
                     @csrf

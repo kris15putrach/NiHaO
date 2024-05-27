@@ -121,7 +121,7 @@ public function index()
 
             if (isset($relevantOutputJSON['predictions'])) {
                 $predictions = $relevantOutputJSON['predictions'];
-                $classes = ["Kondisi Ikan"];
+                $classes = [];
                 foreach ($predictions as $prediction) {
                     if (isset($prediction['class'])) {
                         $classes[] = $prediction['class'];
@@ -152,6 +152,17 @@ public function index()
         $diagnoses = Diagnosis::where('username', $username)->get();
 
         return view('riwayatdiagnosis', ['diagnoses' => $diagnoses]);
+    }
+
+    public function delete($id)
+    {
+        $diagnosis = Diagnosis::find($id);
+        if ($diagnosis) {
+            $diagnosis->delete();
+            return response()->json(['status' => 'success', 'message' => 'Riwayat Diagnosis berhasil dihapus']);
+        } else {
+            return response()->json(['status' => 'error', 'message' => 'Terjadi Eror, silahkan ulang kembali'], 404);
+        }
     }
 }
 

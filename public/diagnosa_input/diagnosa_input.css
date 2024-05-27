@@ -34,7 +34,7 @@ header {
 }
 
 nav {
-    margin-left: auto; /* Menambahkan margin-left auto */
+    margin-left: auto;
 }
 
 nav ul {
@@ -85,13 +85,13 @@ nav ul li a:hover {
     display: block;
     transition: 0.3s;
 }
+
 .sidebar a:last-child {
-    margin-bottom: 250  px;
+    margin-bottom: 250px;
 }
 
-
 .sidebar a:hover {
-    color: #5CA3AC; 
+    color: #5CA3AC;
 }
 
 .sidebar .closebtn {
@@ -113,7 +113,6 @@ nav ul li a:hover {
 }
 
 .openbtn:hover {
-    
     background-color: #5CA3AC;
 }
 
@@ -127,19 +126,18 @@ nav ul li a:hover {
     .sidebar a {font-size: 18px;}
 }
 
-
 .logoutbtn a {
     color: #E81313;
     text-decoration: none;
     transition: 0.3s;
-    margin-top: 40px; 
+    margin-top: 40px;
 }
 
 .logoutbtn a:hover {
-    color: #5CA3AC; /* Warna merah */
+    color: #5CA3AC;
 }
 
-.uploaded-image image{
+.uploaded-image image {
     cursor: pointer;
 }
 
@@ -161,15 +159,80 @@ nav ul li a:hover {
     transform: translateY(-2px);
 }
 
-
-.kamera-container {
-    height: 10px;
-    width: 0;
-    position: relative;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    padding-top: 60px;
-    transition: 0.5s;
+.butup-kamera button {
+    margin-left: 50px;
+    margin-top: 5px;
+    margin-bottom: 100px;
+    gap: 30px;
+    padding: 10px 20px;
+    background-color: #cce2cd3a;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: 'Poppins';
 }
 
+.butup-kamera button:hover {
+    background-color: #5CA3AC;
+    transform: translateY(-2px);
+}
+
+
+.kamera-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 45%; 
+    max-width: 500px;
+    height: 600px; 
+    background: linear-gradient(to bottom, #ffa4a4, #573d3d);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 180px;
+    margin-left: 30px;
+    height: 650px;
+}
+
+.custom-file-upload {
+    cursor: pointer;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    background: linear-gradient(to bottom, #ffa4a4, #573d3d);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.kamera-file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.daftar-text {
+    font-family: 'Poppins';
+    text-align: center; 
+    margin-bottom: 20px; 
+    margin-top: 10px;
+  }

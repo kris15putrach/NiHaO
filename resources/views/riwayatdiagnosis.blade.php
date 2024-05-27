@@ -73,9 +73,9 @@
                             <td>{{ is_array($diagnosis->results) ? implode(', ', $diagnosis->results) : $diagnosis->results }}</td>
                             <td>{{ $diagnosis->created_at }}</td>
                             <td>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip">
+                                <button onclick="deleteDiagnosis({{ $diagnosis->id }})" class="delete" title="Delete" data-toggle="tooltip">
                                     <img src="\kelolaakun\trashcan.png" alt="Trash Icon" width="50" height="auto" />
-                                </a>
+                                </button>
                             </td>
                         </tr>
                         @endforeach
@@ -84,5 +84,27 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function deleteDiagnosis(id) {
+            if(confirm('Anda yakin ingin menghapus riwayat diagnosis ini?')) {
+                $.ajax({
+                    url: '/diagnosis/' + id,
+                    type: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    success: function(result) {
+                        alert(result.message);
+                        location.reload();
+                    },
+                    error: function(err) {
+                        alert(err.responseJSON.message);
+                    }
+                });
+            }
+        }
+    </script>
+
 </body>
 </html>

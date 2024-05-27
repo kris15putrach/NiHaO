@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46Z
     <script src="\komunitas\komunitas.js"></script>
     <script src="/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
-    <style>
-
-    </style>
 </head>
 
 <body>
@@ -68,6 +65,7 @@
 
 </div> 
 
+<div class="panel">
 <div class="komusi">
         <div class="container profile">
             <div class="row">
@@ -87,7 +85,7 @@
                             <div class="profile-img-list">
                                 <div class="profile-img-list-item main">
                                     <a href="#" data-lity="" class="profile-img-list-link">
-                                        <img src="{{ asset('storage/' . $post->gambar) }}" alt="gambar" class="img-fluid">
+                                        <img src="{{ asset('storage/' . $post->gambar) }}" alt="gambar" class="img-fluid post-image">
                                     </a>
                                 </div>
                             </div>
@@ -141,7 +139,7 @@
     </div>
       
     
-
+</div>
 
     <script>
     

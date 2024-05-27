@@ -59,41 +59,54 @@ $options = [
                     
                 </header>
 
-                                 <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('register') }}">
 
-                                        @csrf
-
-                                        <div class="kontainer_form">
-                                            <div class="form-group">
-                                                <label class="form-label" for="form3Example1cg"><b>Email:</b></label>
-                                                <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="email" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label" for="form3Example4cg"><b>Username:</b></label>
-                                                <input type="text" id="form3Example4cg" class="form-control form-control-lg" name="username" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label" for="form3Example4cg"><b>Password:</b></label>
-                                                <input type="password" id="form3Example4cg" class="form-control form-control-lg" name="password" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label" for="form3Example4cg"><b>Konfirmasi Password:</b></label>
-                                                <input type="password" id="form3Example4cg" class="form-control form-control-lg" name="konfirmasi password" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label" for="form3Example4cg"><b>Pilih Daftar Sebagai:</b></label>
-                                                <select class="form-input" name="role">
-                                                    <option value="Pembudidaya">Pembudidaya</option>
-                                                    <option value="Komunitas">Komunitas</option>
-                                                </select>
-                                            </div>
-                                            <div class="button_daftar">
-                                                <button type="submit"><b>Register</b></button>
-                                            </div>
-                                        </div>
+            @csrf
 
 
-                                    </form>
+<div class="panerian">
+            <div class="panel">
+        <div class="daftar-text"><b>NiHaO! Silahkan Daftar Disini</b></div>
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+            <div class="kontainer_form">
+                <div class="form-group">
+                    <label class="form-label" for="form3Example1cg"><b>Email:</b></label>
+                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="email" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="form3Example1cg"><b>Nomor Whatsapp:</b></label>
+                    <input placeholder="0812xxxx" id="form3Example1cg" class="form-control form-control-lg" name="nomor" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="form3Example4cg"><b>Username:</b></label>
+                    <input type="text" id="form3Example4cg" class="form-control form-control-lg" name="username" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="form3Example4cg"><b>Password:</b></label>
+                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" name="password" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="form3Example4cg"><b>Konfirmasi Password:</b></label>
+                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" name="konfirmasi password" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="form3Example4cg"><b>Pilih Daftar Sebagai:</b></label>
+                    <select class="form-input" name="role">
+                        <option value="Pembudidaya">Pembudidaya</option>
+                        <option value="Komunitas">Komunitas</option>
+                    </select>
+                </div>
+            </div>
+            <div class="button_daftar">
+                <button type="submit"><b>Register</b></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+                </form>
             
 
             </body>

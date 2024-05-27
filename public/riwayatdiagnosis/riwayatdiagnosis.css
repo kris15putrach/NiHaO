@@ -304,3 +304,11 @@ table.table .avatar {
     margin-top: 10px;
     font-size: 13px;
 }
+
+
+.delete {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}

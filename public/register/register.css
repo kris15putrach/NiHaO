@@ -34,7 +34,7 @@ header {
 }
 
 nav {
-    margin-left: auto; /* Menambahkan margin-left auto */
+    margin-left: auto;
 }
 
 nav ul {
@@ -62,85 +62,61 @@ nav ul li a:hover {
     background-color: #5CA3AC;
 }
 
-.sidebar {
-    font-family: 'Poppins';
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
+.panel {
     background: linear-gradient(to bottom, #ffa4a4, #573d3d);
-    overflow-x: hidden;
-    padding-top: 60px;
-    transition: 0.5s;
-}
-
-.sidebar a {
-    font-family: 'Poppins';
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #000000;
-    display: block;
-    transition: 0.3s;
-}
-.sidebar a:last-child {
-    margin-bottom: 250  px;
-}
-
-
-.sidebar a:hover {
-    color: #5CA3AC; 
-}
-
-.sidebar .closebtn {
-    position: absolute;
-    top: 0;
-    left: 25px;
-    font-size: 30px;
-    margin-left: 10px;
-}
-
-.openbtn {
-    font-family: 'Poppins';
-    font-size: 20px;
-    cursor: pointer;
-    background-color: #3c3c3c00;
-    color: rgb(0, 0, 0);
-    padding: 10px 15px;
-    border: none;
-}
-
-.openbtn:hover {
-    
-    background-color: #5CA3AC;
-}
-
-#main {
-    transition: margin-left .5s;
+    border-radius: 10px;
     padding: 20px;
+    margin: 50px auto;
+    max-width: 800px;
+    position: relative;
+    text-align: center;
+    color: rgb(0, 0, 0);
 }
 
-@media screen and (max-height: 450px) {
-    .sidebar {padding-top: 15px;}
-    .sidebar a {font-size: 18px;}
+.daftar-text {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffa4a4;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
-
-.logoutbtn a {
-    color: #E81313;
-    text-decoration: none;
-    transition: 0.3s;
-    margin-top: 40px; 
+.kontainer_form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-family: 'Poppins';
+    margin-top: 20px;
 }
 
-.logoutbtn a:hover {
-    color: #5CA3AC; 
+.form-group {
+    flex: 1 1 calc(50% - 20px);
+    display: flex;
+    flex-direction: column;
 }
 
-.button_daftar button{
-    margin: 10px;
+.form-label {
+    margin-bottom: 5px;
+}
+
+.form-control,
+.form-input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.button_daftar {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button_daftar button {
     padding: 10px 20px;
     background-color: #cce2cd3a;
     color: rgb(0, 0, 0);
@@ -149,54 +125,17 @@ nav ul li a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    margin-left: 100px;
 }
 
 .button_daftar button:hover {
     background-color: #5CA3AC;
     transform: translateY(-2px);
-    
 }
 
-.kontainer_form {
-    display: flex;
-    flex-direction: column;
-    height: 180px;  
-    font-family: 'Poppins';  
-    height: 300px;
+.daftar-text {
+    font-family: 'Poppins';
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-label {
-    display: inline-block;
-    margin-bottom: 5px;
-    
-}
-
-.form-control {
-    width: 100%;
-    padding: 50px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-
-.form-input {
-    width: 100%;
-    padding: 25px;
-    font-size: 16px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    appearance: none;
-    -webkit-appearance: none;
-    background-size: 15px;
-    font-family: 'Poppins';  
-}
-
-.buttons button {
-    margin-top: 20px;
+.panerian {
+    margin-top: 250px;
 }

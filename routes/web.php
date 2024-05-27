@@ -88,3 +88,5 @@ Route::get('/riwayat_diagnosis', function () {
     return view('riwayatdiagnosis');
 });
 Route::get('/riwayat_diagnosis', [RoboflowController::class, 'showHistory'])->middleware('auth');
+Route::delete('/diagnosis/{id}', [RoboflowController::class, 'delete'])->name('diagnosis.delete');
+

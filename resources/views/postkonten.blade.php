@@ -47,10 +47,11 @@
     <section>
         <div class="col-md-5">
             <section class="panel timeline-post-to">
+                
                 <div class="panel-body">
                     <form action="{{ route('unggah') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                    
+                        <div class="daftar-text"><b>NiHaO! Silahkan isi untuk tampilan Postingan Anda!</b></div>
                         <input type="text" id="form3Example4cg" class="form-control form-control-lg" name="nama" value="{{ session('username') }}" readonly style="display: none;" />
                         <textarea class="form-control" placeholder="Apa yang ada dipikiran Mu?" name="pesan"></textarea>
                                              
@@ -59,9 +60,14 @@
                         </label>
                         <input type="file" name="gambar" id="gambar-upload" style="display: none;" required />
 
+                        <div class="image-preview">
+                            <b>Tampilan Gambar: </b>
+                            <img id="gambar-preview">
+                        </div>
+
                         <div class="buttons">
                             <button type="submit"><b>Unggah</b></button>
-                            <button onclick="window.location.href='postingan'"><b>Kembali</b></button>
+                            <button onclick="window.location.href='komu'"><b>Kembali</b></button>
                         </div>
                         
                     </form>
@@ -72,6 +78,20 @@
     </section>
 
     <script src="/postkomunitas/postkomunitas.js"></script>
+
+    <script>
+    document.getElementById('gambar-upload').addEventListener('change', function(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            document.getElementById('gambar-preview').src = e.target.result;
+        };
+        
+        reader.readAsDataURL(file);
+    });
+</script>
+
 </body>
 
 </html>

@@ -166,6 +166,7 @@ nav ul li a:hover {
   height: 180px;  
   font-family: 'Poppins';  
   height: 300px;
+  margin: 30px;
 }
 
 .form-group {
@@ -206,4 +207,20 @@ nav ul li a:hover {
 .ingatsaya {
   font-size: 13px;
   font-family: 'Poppins';  
+}
+
+.gabung {
+  background: linear-gradient(to bottom, #ffa4a4, #573d3d);
+  width: auto;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 70px;
+}
+
+.daftar-text {
+  font-family: 'Poppins';
+  text-align: center; 
+  margin-bottom: 20px; 
+  margin-top: 10px;
 }
