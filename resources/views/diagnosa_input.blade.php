@@ -43,15 +43,23 @@
         <div id="main">
             <button class="openbtn" onclick="openNav()">&#9776;</button>
         </div>
+
+
     </header>
+
+
+ 
+
 
     <form action="/upload" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container">
+            
             <div class="content-wrapper">
+                
                 <div class="upload-container">
+                <div class="daftar-text"><b>NiHaO! Silahkan Upload Gambar Anda Disini!</b></div>
                     <label for="file-upload" class="custom-file-upload">
-                    <div class="daftar-text"><b>NiHaO! Silahkan Upload Gambar Anda Disini!</b></div>
                         <img id="uploaded-image" src="/diagnosa_input/mid.png" alt="Folder Icon" width="800" height="auto" />
                     </label>
 
@@ -64,7 +72,7 @@
                 </div>
 
                 <div id="kamera-container" class="kamera-container" style="display: none;">
-                <div class="daftar-text"><b>NiHaO! Kamera Anda Tampil Disini</b></div>
+                <div class="daftar-text"><b>NiHaO! Tangkapan Kamera-mu Tampil Disini</b></div>
                     <label for="kamera-upload" class="kamera-file-upload">
                         <video id="videoElement" autoplay width="500" height="500"></video>
                         <canvas id="canvas" width="500" height="500" style="display:none;"></canvas>

@@ -18,6 +18,7 @@ class RoboflowController extends Controller
         $apiKey = 'AaxVQyfDGfG11CPPcsG1';
 
         try {
+            // dd($url);
             $response = Http::withHeaders([
                 'Authorization' => "Bearer {$apiKey}",
                 'Accept' => 'application/json',

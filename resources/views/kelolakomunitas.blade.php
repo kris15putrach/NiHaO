@@ -81,7 +81,7 @@
                                             <img id="uploaded-image" src="\kelolakomunitas\trashcan.png" alt="Folder Icon" width="60px" height="auto" />
                                         </button>
                                     </form>
-                                    <button class="toggle-comments btn btn-primary" data-post-id="{{ $post->id }}">Show Komentar</button>
+                                    <button class="toggle-comments btn btn-primary" data-post-id="{{ $post->id }}">Show Comments</button>
                                 </td>
                             </tr>
                             <tr class="comments-row" data-post-id="{{ $post->id }}" style="display: none;">

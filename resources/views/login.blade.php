@@ -28,9 +28,10 @@
     </header>
 
     
+<div class="panel">
+<div class="daftar-text"><b>NiHaO! Silahkan LogIn Disini!</b></div>
 
     <div class="gabung">
-    <div class="daftar-text"><b>NiHaO! Silahkan LogIn Disini!</b></div>
         <div class="container">
 
         @if ($errors->any())
@@ -43,8 +44,8 @@
           
                     <!-- Form Login -->
                     <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <div class="kontainer_form">
+                @csrf
+                <div class="kontainer_form">
                     <div class="form-group">
                         <label class="form-label" for="form3Example4cg"><b>Username:</b></label>
                         <input type="text" id="form3Example4cg" class="form-control form-control-lg" name="username" value="{{ old('username') }}" required />
@@ -70,10 +71,19 @@
                     </div>
                 </div>
             </form>
+
+
+                    
+                    <!-- Link Registrasi -->
+            
+                </div>
+            </div>
         </div>
     </div>
 
+</div>
     <script src="/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
 </body>
 
 </html>
+

@@ -29,7 +29,7 @@ header {
 }
 
 .logo img {
-    width: 60px;
+    width: 80px;
     height: auto;
     margin-right: 10px;
 }
@@ -93,8 +93,10 @@ nav ul li a:hover {
 }
 
 .kamerakanan img {
-    max-width: 50%;
+    max-width: 500px;
     height: auto;
+    margin-right: 250px;
+    margin-left: 80px;
 }
 
 h1 {

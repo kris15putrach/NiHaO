@@ -274,8 +274,7 @@ nav ul li a:hover {
     border-radius: 10px;
     background: linear-gradient(to bottom, #ffa4a4, #573d3d);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    color: #fff; 
-    height: auto;
+    color: #fff; /* Warna teks putih agar kontras dengan latar belakang */
 }
 
 
