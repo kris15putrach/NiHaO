@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verifikasi Kode OTP - NiHaO</title>
+    <title>Ganti Password - NiHaO</title>
     <link href="/lupapassword/lupapassword.css" rel="stylesheet">
     <link href="/bootstrap-5.3.3-dist/css/bootstrap.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -29,19 +29,41 @@
 
     <div class="gabung">
         <div class="container">
+            @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+        <div style="color: red;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
             <div class="form-container">
-                <!-- Form Verifikasi Kode OTP -->
-                <form method="POST" action="proses_verifikasi_controller.php">
+                <!-- Form Ganti Password -->
+                <form method="POST" action="{{ route('resetPassword') }}">
+                    @csrf
                     <div class="kontainer_form">
                         <div class="form-group">
-                            <label class="form-label" for="otp"><b>Kode OTP:</b></label>
-                            <input type="text" id="otp" class="form-control form-control-lg" name="otp" required />
+                            <label class="form-label" for="newPassword"><b>Password Baru:</b></label>
+                            <input type="password" id="newPassword" class="form-control form-control-lg" name="newPassword" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="confirmNewPassword"><b>Konfirmasi Password Baru:</b></label>
+                            <input type="password" id="confirmNewPassword" class="form-control form-control-lg" name="newPassword_confirmation" required />
                         </div>
                         <div class="buttons">
-                            <button type="submit" class="btn btn-primary"><b>Verifikasi Kode OTP</b></button>
+                            <button type="submit" class="btn btn-primary"><b>Reset Password</b></button>
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

@@ -27,6 +27,7 @@
         </nav>
     </header>
 
+    
 
     <div class="gabung">
     <div class="daftar-text"><b>NiHaO! Silahkan LogIn Disini!</b></div>
@@ -39,7 +40,7 @@
         @endforeach
     </div>
 @endif
-            
+          
                     <!-- Form Login -->
                     <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -54,26 +55,25 @@
                         <input type="password" id="form3Example4cg" class="form-control form-control-lg" name="password" value="{{ old('password') }}" required />
                     </div>
 
-                        <div class="ingatsaya">
-                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                            <label class="form-check-label" for="remember">Ingat Saya</label>
-                        </div>  
-
-                        <div class="buttons">
-                            <button type="submit" class="btn btn-primary"><b>Login</b></button>
-                        </div>
+                    <!-- Hyperlink untuk Lupa Password -->
+                    <div class="form-group">
+                        <a href="{{ route('lupa') }}" class="text-bold">Lupa Password?</a>
                     </div>
-                </form>
 
-                    
-                    <!-- Link Registrasi -->
-            
+                    <div class="ingatsaya">
+                        <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                        <label class="form-check-label" for="remember">Ingat Saya</label>
+                    </div>
+
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-primary"><b>Login</b></button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+
     <script src="/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
 </body>
 
 </html>
-

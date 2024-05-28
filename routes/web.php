@@ -90,3 +90,26 @@ Route::get('/riwayat_diagnosis', function () {
 Route::get('/riwayat_diagnosis', [RoboflowController::class, 'showHistory'])->middleware('auth');
 Route::delete('/diagnosis/{id}', [RoboflowController::class, 'delete'])->name('diagnosis.delete');
 
+Route::get('/lupa', function () {
+    return view('lupapassword');
+});
+
+Route::post('/request-otp', [LoginController::class, 'requestOtp'])->name('requestOtp');
+
+Route::get('/verify-otp', [LoginController::class, 'showVerifyForm'])->name('showVerifyForm');
+
+Route::post('/verify-otp', [LoginController::class, 'verifyOtp'])->name('verifyOtp');
+
+Route::get('/reset', [LoginController::class, 'reset'])->name('reset');
+Route::post('/reset', [LoginController::class, 'resetPassword'])->name('resetPassword');
+
+
+Route::get('/lupa', [LoginController::class, 'lupa'])->name('lupa');
+
+
+// end
+
+Route::get('/verif', function () {
+    return view('verifikasi_otp');
+});
+

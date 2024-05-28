@@ -30,8 +30,10 @@
         <div class="container">
             <div class="form-container">
                 <!-- Form Verifikasi OTP -->
- 
+                <form id="verifyOtpForm" method="POST" action="{{ route('verifyOtp') }}">
 
+                    @csrf
+                    
                     <div class="kontainer_form">
                         <div class="form-group">
                             <label class="form-label" for="otp"><b>Kode OTP:</b></label>
